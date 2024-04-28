@@ -1,0 +1,8 @@
+# Diretório de cache do Python
+__pycache__/
+
+# Diretório de logs do Spark
+/opt/spark/logs/
+
+# Cache de pacotes Python
+/root/.cache/
