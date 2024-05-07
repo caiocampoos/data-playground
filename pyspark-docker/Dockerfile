@@ -35,6 +35,8 @@ FROM spark-base as pyspark
 
 # Install python deps
 COPY requirements/requirements.txt .
+COPY test/index.py .
+COPY test/dados.csv .
 RUN pip3 install -r requirements.txt
 
 # Setup Spark related environment variables
