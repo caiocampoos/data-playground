@@ -17,7 +17,6 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-
 # Setup the directories for our Spark and Hadoop installations
 ENV SPARK_HOME=${SPARK_HOME:-"/opt/spark"}
 ENV HADOOP_HOME=${HADOOP_HOME:-"/opt/hadoop"}
@@ -30,13 +29,10 @@ RUN curl https://dlcdn.apache.org/spark/spark-${SPARK_VERSION}/spark-${SPARK_VER
  && tar xvzf spark-${SPARK_VERSION}-bin-hadoop3.tgz --directory /opt/spark --strip-components 1 \
  && rm -rf spark-${SPARK_VERSION}-bin-hadoop3.tgz
 
-
 FROM spark-base as pyspark
 
 # Install python deps
 COPY requirements/requirements.txt .
-COPY test/index.py .
-COPY test/dados.csv .
 RUN pip3 install -r requirements.txt
 
 # Setup Spark related environment variables
@@ -45,6 +41,9 @@ ENV SPARK_MASTER="spark://spark-master:7077"
 ENV SPARK_MASTER_HOST spark-master
 ENV SPARK_MASTER_PORT 7077
 ENV PYSPARK_PYTHON python3
+
+# Create directory for tickers and copy the mock data
+COPY tickers "$SPARK_HOME/tickers"
 
 # Copy the default configurations into $SPARK_HOME/conf
 COPY conf/spark-defaults.conf "$SPARK_HOME/conf"
