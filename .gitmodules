@@ -1,0 +1,3 @@
+[submodule "yahooWS2"]
+	path = yahooWS2
+	url = https://github.com/kingjotaro/yahooWS2
