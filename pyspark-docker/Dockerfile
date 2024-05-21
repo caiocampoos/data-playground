@@ -42,6 +42,9 @@ ENV SPARK_MASTER_HOST spark-master
 ENV SPARK_MASTER_PORT 7077
 ENV PYSPARK_PYTHON python3
 
+# Copy index.py
+COPY index.py .
+
 # Create directory for tickers and copy the mock data
 COPY tickers "$SPARK_HOME/tickers"
 
@@ -55,5 +58,6 @@ ENV PYTHONPATH=$SPARK_HOME/python/:$PYTHONPATH
 
 # Copy appropriate entrypoint script
 COPY entrypoint.sh .
+
 
 ENTRYPOINT ["./entrypoint.sh"]
