@@ -9,7 +9,7 @@ then
   start-master.sh -p 7077
 elif [ "$SPARK_WORKLOAD" == "worker" ];
 then
-  start-worker.sh spark://spark-master:7077 --memory 1g
+  start-worker.sh spark://spark-master:7077 --memory 1g --cores 2
 elif [ "$SPARK_WORKLOAD" == "history" ]
 then
   start-history-server.sh

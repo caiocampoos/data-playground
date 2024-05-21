@@ -23,7 +23,7 @@ stop:
 	docker-compose stop
 
 submit:
-	docker exec da-spark-master spark-submit --master spark://spark-master:7077 --deploy-mode client ./apps/$(app)
+	docker exec da-spark-master spark-submit --master spark://spark-master:7077 --deploy-mode client ./$(app)
 
 submit-da-book:
 	make submit app=data_analysis_book/$(app)
